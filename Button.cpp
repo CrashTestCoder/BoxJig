@@ -11,7 +11,7 @@ Button::Button(int pin)
     : pin_ { pin }
 {
     pinMode(pin, INPUT);
-    pullUpDnControl(pin, PUpDn::PUD_UP);
+    pullUpDnControl(pin, PUD_UP);
 }
 
 bool Button::get() const

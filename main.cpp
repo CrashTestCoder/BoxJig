@@ -13,13 +13,20 @@ std::filesystem::path serial_dir { "/dev/ttyACM0" };
 int main()
 {
     wiringPiSetup();
-    Button slide_switch { 1 };
-    auto job_info = getJobInfo("job_info.json");
-    std::cout << job_info;
-    for(auto instr : getInstructions(job_info))
+
+    Button start_button { 2 };
+    while(1)
     {
-        instr.send();
-        slide_switch.waitForNext(0);
+        start_button.waitForNext(0);
+
+        Button slide_switch { 1 };
+        auto job_info = getJobInfo("job_info.json");
+        std::cout << job_info;
+        for(auto instr : getInstructions(job_info))
+        {
+            instr.send();
+            slide_switch.waitForNext(0);
+        }
     }
     return 0;
 }

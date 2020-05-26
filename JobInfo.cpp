@@ -107,7 +107,10 @@ std::ostream& operator<<(std::ostream& out, std::optional<JobInfo> ji)
     if(! file)
     {
         if(! std::filesystem::exists(path))
+        {
             std::cerr << "Job Info directory " << path << " does not exist\n";
+            return {};
+        }
     }
     JobInfo job_info;
 
@@ -177,7 +180,7 @@ void cut(std::vector<double>& instr, JobInfo& job_info)
 [[nodiscard]] Instruction sendTo_Instr(double pos)
 {
     using namespace std::literals::string_literals;
-    return Instruction { "G1 Z"s + util::to_string(pos) + "\n\r" };
+    return Instruction { "G1 Z"s + util::to_string(pos * 25.4) + "\n\r" };
 }
 
 std::vector<Instruction> getInstructions(JobInfo job_info)

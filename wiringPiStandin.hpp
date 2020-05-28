@@ -57,5 +57,5 @@ inline static void pullUpDnControl(int pin, int pud)
 inline static int digitalRead(int pin)
 {
     pin = pin;
-    return getch() != ' ';
+    return std::cin.get() != pin + '0';
 }

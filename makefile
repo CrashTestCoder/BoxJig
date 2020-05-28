@@ -1,7 +1,7 @@
 CC = gcc
 CPP = g++
 CFLAGS = -I .  -Wall -Wextra -Wpedantic -O3 -std=c++2a -pthread
-OBJ =  Button.o Instruction.o JobInfo.o main.o
+OBJ =  Button.o Instruction.o JobInfo.o main.o Serial.o
 DEPS = 
 
 %.o: %.c $(DEPS)
@@ -10,10 +10,10 @@ DEPS =
 %.o: %.cpp $(DEPS)
 	$(CPP) -c -o $@ $< $(CFLAGS)
 
-BoxJigCode: $(OBJ)
+BoxJig: $(OBJ)
 	$(CPP) -o $@ $^ $(CFLAGS)
 
 .PHONY: clean
 
 clean:
-	rm -f  Button.o Instruction.o JobInfo.o main.o
+	rm -f  Button.o Instruction.o JobInfo.o main.o Serial.o

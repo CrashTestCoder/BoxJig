@@ -1,19 +1,14 @@
 #include "Instruction.hpp"
+#include "Serial.hpp"
 #include <filesystem>
 #include <fstream>
 #include <iostream>
-
-extern std::filesystem::path serial_dir;
+#include <mutex>
+#include <string>
 
 void Instruction::send()
 {
-    if(std::filesystem::exists(serial_dir))
-    {
-        std::ofstream serial { serial_dir };
-        serial << instruction;
-    }
-    else
-        std::cerr << "Serial directory " << serial_dir << " does not exist\n";
+    Serial::write(instruction);
     std::cout << instruction;
 }
 

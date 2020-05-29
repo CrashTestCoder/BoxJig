@@ -10,6 +10,11 @@ void Instruction::send()
 {
     Serial::write(instruction);
     std::cout << instruction;
+    auto msg = Serial::getLine();
+    
+    if (msg[0] != 'o')
+        std::cerr << "gcode error:" << msg << '\n'
+                  << instruction;
 }
 
 Instruction::operator std::string() const

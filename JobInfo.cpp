@@ -173,7 +173,6 @@ void cut(std::vector<double>& instr, JobInfo& job_info)
         job_info.current_position += job_info.finger_width;
         cut(positions, job_info);
     }
-    positions.emplace_back(0);
     return positions;
 }
 

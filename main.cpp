@@ -27,12 +27,22 @@ namespace buttons
     Button go_back      = 16;
 } // namespace buttons
 
+int const power_supply = 23;
+
 int main()
 {
+    if(! Serial::connected())
+    {
+        std::cerr << "Failed to establish Serial Communication\n";
+        //abort();
+    }
+    pinMode(power_supply, OUTPUT);
+    digitalWrite(power_supply, HIGH);
     while(1)
     {
         buttons::start.waitForNext(0);
-
+        Serial::flush();
+    
         auto job_info = getJobInfo("job_info.json");
         Instruction { "G28 Z\n" }.send();
 
@@ -43,18 +53,19 @@ int main()
 
             bool waiting = true;
             std::thread index_listener { [&waiting] {
-                buttons::slide_switch.waitForNext(0);
+                buttons::slide_switch.waitForNext(1);
                 waiting = false;
+                buttons::slide_switch.waitForNext(0);
             } };
             std::thread zero { [&waiting, &instr] {
-        	while(waiting)
-		{
-		        buttons::zero.waitForNext(0, &waiting);
+                while(waiting)
+                {
+                    buttons::zero.waitForNext(0, &waiting);
 	                if(!waiting) return;
                 	Instruction { "G28 Z\n" }.send();
         	        std::this_thread::sleep_for(std::chrono::milliseconds(2));
 	                instr->send();
-		}
+                }
             } };
             std::thread reverse { [&waiting, &instr, &instructions] {
                 while(waiting && instr != std::begin(instructions))
@@ -69,6 +80,7 @@ int main()
             zero.join();
             reverse.join();
         }
+        Instruction { "G1 Z0\n" }.send();
     }
     // backround_print.join();
     return 0;

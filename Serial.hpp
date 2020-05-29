@@ -20,4 +20,6 @@ public:
     static char getChar();
     static std::string getLine(char delimiter = '\n');
     static void write(std::string_view sv);
+    static bool connected();
+    static void flush();
 };

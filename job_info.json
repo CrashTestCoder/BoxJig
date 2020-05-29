@@ -2,9 +2,9 @@
     "type": "nFinger",
     "invert": true,
     "blade_width": 0.1,
-    "board_width": 4,
+    "board_width": 8,
     "overlap": 0.5,
 
-    "fingers": 4
+    "fingers": 32
 
 }

@@ -1,6 +1,6 @@
 CC = gcc
 CPP = g++
-CFLAGS = -I .  -Wall -Wextra -Wpedantic -O3 -std=c++2a -pthread
+CFLAGS = -I .  -Wall -Wextra -Wpedantic -O3 -std=c++2a -pthread -lwiringPi -lstdc++fs
 OBJ =  Button.o Instruction.o JobInfo.o main.o Serial.o
 DEPS = 
 

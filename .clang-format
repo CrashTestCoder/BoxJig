@@ -3,17 +3,17 @@ AccessModifierOffset: -4
 AlignAfterOpenBracket: Align
 AlignConsecutiveAssignments: true
 #AlignConsecutiveDeclarations: true #Breaks PointerAlignment: Right  
-AlignConsecutiveMacros: true
+#AlignConsecutiveMacros: true
 AlignEscapedNewlines: Right
 AlignOperands: true
 AlignTrailingComments: true
-AllowAllArgumentsOnNextLine: false # BinPackArguments
+#AllowAllArgumentsOnNextLine: false # BinPackArguments
 AllowAllParametersOfDeclarationOnNextLine: false
 #AllowShortBlocksOnASingleLine: Empty # maybe Always
 AllowShortCaseLabelsOnASingleLine: true #?
 AllowShortFunctionsOnASingleLine: true
 AllowShortIfStatementsOnASingleLine: false
-AllowShortLambdasOnASingleLine: true
+#AllowShortLambdasOnASingleLine: true
 AllowShortLoopsOnASingleLine: false
 AlwaysBreakAfterDefinitionReturnType: None
 AlwaysBreakBeforeMultilineStrings: false
@@ -22,7 +22,7 @@ BinPackArguments: false
 BinPackParameters: false
 BreakBeforeBraces: Custom
 BraceWrapping:
-    AfterCaseLabel: false
+#    AfterCaseLabel: false
     AfterClass: true
     AfterControlStatement: true
     AfterEnum: false
@@ -72,7 +72,7 @@ ReflowComments: true
 SortIncludes: true
 SortUsingDeclarations: true
 SpaceAfterCStyleCast: false
-SpaceAfterLogicalNot: true
+#SpaceAfterLogicalNot: true
 SpaceAfterTemplateKeyword: true
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeCpp11BracedList: true

@@ -1,5 +1,5 @@
 #include "Serial.hpp"
-
+#include <fstream>
 #if __has_include(<wiringSerial.h>)
 #    include <wiringSerial.h>
 #else
@@ -9,24 +9,25 @@
 char Serial::getChar()
 {
     std::scoped_lock const guard(access_mutex);
-    char c;
-    while((c = std::fgetc(file)) == EOF)
+    while(! serialDataAvail(file))
         ;
-    return c;
+    return serialGetchar(file);
 }
 
 std::string Serial::getLine(char delimiter)
 {
     std::scoped_lock const guard(access_mutex);
     std::string data;
-    char c;
-    while(! ((c = std::fgetc(file)) == EOF) || (c == delimiter))
-        data += c;
+    while(serialDataAvail(file) > 0 && *std::prev(std::end(data)) != delimiter)
+        data += serialGetchar(file);
     return data;
 }
 
 void Serial::write(std::string_view sv)
 {
     std::scoped_lock const guard(access_mutex);
-    std::fwrite(sv.data(), sizeof(*sv.begin()), sv.size(), file);
+    std::ofstream file { directory };
+    file << sv;
+    //for(auto & data : sv)
+    //    serialPutchar(file, data);
 }

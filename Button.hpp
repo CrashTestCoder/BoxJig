@@ -1,6 +1,6 @@
 #pragma once
 
-#include <iostream>
+#include <functional>
 
 class Button
 {
@@ -9,5 +9,6 @@ class Button
 public:
     Button(int pin);
     bool get() const;
-    void waitForNext(bool state) const;
+    void waitForNext(bool state, bool *timeout = nullptr) const;
+    void onState(bool state, std::function<void()> func, bool &timeout);
 };

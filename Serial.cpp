@@ -2,7 +2,7 @@
 #include <errno.h>
 #include <fstream>
 #include <iostream>
-
+#include <string.h>
 char Serial::getChar()
 {
     std::scoped_lock const guard(access_mutex);
@@ -37,16 +37,12 @@ std::string Serial::getLine(char delimiter)
 
 void Serial::write(std::string_view sv)
 {
-    std::scoped_lock const guard(access_mutex);
-    std::ofstream file { directory };
-    file << sv;
-    //for(auto & data : sv)
-    //    serialPutchar(file, data);
+    for(auto & data : sv)
+        serialPutchar(file, data);
 }
 
 bool Serial::connected()
 {
-    std::cerr << "file: " << file << " errorno: " << errno << '\n';
     return file != -1;
 }
 

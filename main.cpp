@@ -19,7 +19,7 @@ struct Startup__
 #include <regex>
 #include <thread>
 
-std::filesystem::path Serial::directory { "/dev/ttyACM0" };
+char const* Serial::directory = "/dev/ttyACM0";
 
 namespace buttons
 {
@@ -36,7 +36,7 @@ int main()
     if(! Serial::connected())
     {
         std::cerr << "Failed to establish Serial Communication\n";
-        //abort();
+        abort();
     }
 
     pinMode(power_supply, OUTPUT);

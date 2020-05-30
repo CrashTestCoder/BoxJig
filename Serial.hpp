@@ -12,8 +12,8 @@
 
 class Serial
 {
-    static std::filesystem::path directory;
-    static inline int file = serialOpen(directory.c_str(), 115200);
+    static char const* directory;
+    static inline int file = serialOpen("/dev/ttyACM0", 115200);
     static inline std::mutex access_mutex;
 
 public:

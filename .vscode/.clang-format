@@ -2,18 +2,18 @@ Language: Cpp
 AccessModifierOffset: -4
 AlignAfterOpenBracket: Align
 AlignConsecutiveAssignments: true
-#AlignConsecutiveDeclarations: true #Breaks PointerAlignment: Right  
-#AlignConsecutiveMacros: true
+AlignConsecutiveDeclarations: true #Breaks PointerAlignment: Right  
+AlignConsecutiveMacros: true
 AlignEscapedNewlines: Right
 AlignOperands: true
 AlignTrailingComments: true
-#AllowAllArgumentsOnNextLine: false # BinPackArguments
+AllowAllArgumentsOnNextLine: false # BinPackArguments
 AllowAllParametersOfDeclarationOnNextLine: false
-#AllowShortBlocksOnASingleLine: Empty # maybe Always
+AllowShortBlocksOnASingleLine: Empty # maybe Always
 AllowShortCaseLabelsOnASingleLine: true #?
 AllowShortFunctionsOnASingleLine: true
 AllowShortIfStatementsOnASingleLine: false
-#AllowShortLambdasOnASingleLine: true
+AllowShortLambdasOnASingleLine: true
 AllowShortLoopsOnASingleLine: false
 AlwaysBreakAfterDefinitionReturnType: None
 AlwaysBreakBeforeMultilineStrings: false
@@ -22,7 +22,7 @@ BinPackArguments: false
 BinPackParameters: false
 BreakBeforeBraces: Custom
 BraceWrapping:
-#    AfterCaseLabel: false
+    AfterCaseLabel: false
     AfterClass: true
     AfterControlStatement: true
     AfterEnum: false
@@ -33,7 +33,7 @@ BraceWrapping:
     AfterExternBlock: true
     BeforeCatch: false
     BeforeElse: true
-#    BeforeLambdaBody: false
+    BeforeLambdaBody: false
     IndentBraces: false
     SplitEmptyFunction: false
     SplitEmptyRecord: false
@@ -52,9 +52,9 @@ Cpp11BracedListStyle: false
 DisableFormat: false
 FixNamespaceComments: true
 IncludeBlocks: Merge
-# IndentCaseBlocks: true
+IndentCaseBlocks: true
 IndentCaseLabels: false
-# IndentGotoLabels: false
+IndentGotoLabels: false
 IndentPPDirectives: AfterHash
 IndentWidth: 4
 IndentWrappedFunctionNames: true
@@ -72,7 +72,7 @@ ReflowComments: true
 SortIncludes: true
 SortUsingDeclarations: true
 SpaceAfterCStyleCast: false
-#SpaceAfterLogicalNot: true
+SpaceAfterLogicalNot: true
 SpaceAfterTemplateKeyword: true
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeCpp11BracedList: true
@@ -80,13 +80,13 @@ SpaceBeforeCtorInitializerColon: true
 SpaceBeforeInheritanceColon: true
 SpaceBeforeParens: Never
 SpaceBeforeRangeBasedForLoopColon: true
-# SpaceBeforeSquareBrackets: false
-# SpaceInEmptyBlock: true
+SpaceBeforeSquareBrackets: false
+SpaceInEmptyBlock: true
 SpaceInEmptyParentheses: false
 SpacesBeforeTrailingComments: 1
 SpacesInAngles: false
 SpacesInCStyleCastParentheses: false
-# SpacesInConditionalStatement: false
+SpacesInConditionalStatement: false
 SpacesInParentheses: false
 SpacesInSquareBrackets: false
 Standard: Auto

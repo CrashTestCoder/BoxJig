@@ -1,17 +1,12 @@
 #include "Serial.hpp"
+#include <errno.h>
 #include <fstream>
 #include <iostream>
-#include <errno.h>
-#if __has_include(<wiringSerial.h>)
-#    include <wiringSerial.h>
-#else
-#    include <wiringSerialStandin.h>
-#endif
 
 char Serial::getChar()
 {
     std::scoped_lock const guard(access_mutex);
-    while(! serialDataAvail(file))
+    while(!serialDataAvail(file))
         ;
     return serialGetchar(file);
 }
@@ -19,18 +14,19 @@ char Serial::getChar()
 std::string Serial::getLine(char delimiter)
 {
     std::scoped_lock const guard(access_mutex);
-    
+
     std::string msg;
     while(1)
     {
         char read_val = 0;
-        if(int exitcode = serialDataAvail(file); exitcode > 0) 
+        if(int exitcode = serialDataAvail(file); exitcode > 0)
         {
             msg += read_val = serialGetchar(file);
         }
-        if(read_val == delimiter) return msg;
+        if(read_val == delimiter)
+            return msg;
     }
-    
+
     /*
     std::string data;
     while(serialDataAvail(file) > 0 && *std::prev(std::end(data)) != delimiter)

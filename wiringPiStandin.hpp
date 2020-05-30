@@ -8,7 +8,7 @@
 #    include <termios.h>
 #    include <unistd.h>
 
-inline static char getch(void)
+inline extern char getch(void)
 {
     char buf           = 0;
     struct termios old = { 0 };
@@ -41,21 +41,35 @@ enum PUpDn { PUD_OFF,
              PUD_DOWN,
              PUD_UP };
 
-inline static void wiringPiSetup()
+enum State { HIGH,
+             LOW };
+
+inline extern void
+    wiringPiSetup()
 {
     std::cerr << "Warning: wiringPi.h was not found, using debugging alternatives\n";
 }
 
-inline static void pinMode(int pin, int mode)
+inline extern void wiringPiSetupGpio()
+{
+    std::cerr << "Warning: wiringPi.h was not found, using debugging alternatives\n";
+}
+
+inline extern void pinMode(int pin, int mode)
 {
     std::cout << "Setup Pin " << pin << " to mode " << mode << "\n";
 }
-inline static void pullUpDnControl(int pin, int pud)
+inline extern void pullUpDnControl(int pin, int pud)
 {
     std::cout << "Setup Pin " << pin << " bias to " << pud << "\n";
 }
-inline static int digitalRead(int pin)
+inline extern int digitalRead(int pin)
 {
     pin = pin;
     return std::cin.get() != pin + '0';
+}
+
+inline extern void digitalWrite(int pin, State state)
+{
+    std::cout << "Set pin " << pin << " to state " << state << '\n';
 }

@@ -1,11 +1,11 @@
 #include "Button.hpp"
 #include <thread>
 
-//#if __has_include(<wiringPi.h>)
+#if __has_include(<wiringPi.h>)
 #    include <wiringPi.h>
-//#else
-//#    include "wiringPiStandin.hpp"
-//#endif /* WIRING_PI */
+#else
+#    include "wiringPiStandin.hpp"
+#endif /* WIRING_PI */
 
 Button::Button(int pin)
     : pin_ { pin }
@@ -31,8 +31,10 @@ void Button::waitForNext(bool state, bool *timeout) const
 void Button::onState(bool state, std::function<void()> func, bool &timeout)
 {
     bool start_state = get();
-    while(start_state == get() && !timeout);
-    while(get() != state && !timeout);
+    while(start_state == get() && !timeout)
+        ;
+    while(get() != state && !timeout)
+        ;
     if(!timeout)
         func();
 }
